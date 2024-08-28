@@ -15,6 +15,6 @@ class ViaCepAdapter implements ViaCepAdapterInterface
 
     public function getAllData(string $cep)
     {
-        return Http::get($this->baseUri . $cep .'/json');
+        return Http::get($this->baseUri . $cep .'/json')->json();
     }
 }

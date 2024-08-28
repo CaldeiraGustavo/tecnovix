@@ -18,8 +18,8 @@ class GoogleBooksAdapter implements GoogleBooksAdapterInterface
         return Http::get($this->baseUri . 'title:' . $name);
     }
 
-    public function searchByISBN(string $isbn)
+    public function searchByISBN(string $ISBN)
     {
-        return Http::get($this->baseUri . 'isbn:' . $isbn);
+        return Http::get($this->baseUri . 'ISBN:' . $ISBN);
     }
 }

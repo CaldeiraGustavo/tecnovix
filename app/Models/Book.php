@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Livro extends Model
+class Book extends Model
 {
     use HasFactory;
 
@@ -32,4 +32,9 @@ class Livro extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function author()
+    {
+        return $this->hasOne(Author::class, 'id', 'autor_id');
+    }
 }
