@@ -15,11 +15,11 @@ class GoogleBooksAdapter implements GoogleBooksAdapterInterface
 
     public function searchByname(string $name)
     {
-        return Http::get($this->baseUri . 'title:' . $name);
+        return Http::get($this->baseUri . 'title:' . $name)->json();
     }
 
     public function searchByISBN(string $ISBN)
     {
-        return Http::get($this->baseUri . 'ISBN:' . $ISBN);
+        return Http::get($this->baseUri . 'ISBN:' . $ISBN)->json();
     }
 }

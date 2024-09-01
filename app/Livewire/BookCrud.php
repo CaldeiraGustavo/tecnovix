@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Book;
 use App\Models\Author;
+use App\Adapters\External\GoogleBooksAdapter;
 
 class BookCrud extends Component
 {
@@ -53,6 +54,9 @@ class BookCrud extends Component
             'ISBN' => 'required|string|unique:livros,ISBN,' . $this->book_id,
         ]);
 
+        $googleBook = new GoogleBooksAdapter();
+        $result = $googleBook->searchByname('Harry');
+
         Book::updateOrCreate(['id' => $this->book_id], [
             'titulo' => $this->title,
             'ano_publicacao' => $this->publication_year . '-01-01',
@@ -71,7 +75,7 @@ class BookCrud extends Component
         $book = Book::with('author')->findOrFail($id);
         $this->book_id = $id;
         $this->title = $book->titulo;
-        $this->publication_year = $book->ano_publicacao;
+        $this->publication_year = substr($book->ano_publicacao, 0, 4);
         $this->author_id = $book->autor_id;
         $this->ISBN = $book->ISBN;
 
